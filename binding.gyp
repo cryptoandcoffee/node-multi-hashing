@@ -36,6 +36,7 @@
                 "timetravel10.c",
                 "tribus.c",
                 "sha1.c",
+		"sha3/gost.c",
 		"sha3/sph_haval.c",
                 "sha3/sph_hefty1.c",
                 "sha3/sph_fugue.c",
