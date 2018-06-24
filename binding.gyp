@@ -58,6 +58,7 @@
 		"sha3/sha2.c",
 		"sha3/sph_sha2big.c",
                 "whirlpoolx.c",
+		"xevan.c",
                 "x11.c",
                 "x11ghost.c",
                 "x13.c",
