@@ -106,11 +106,11 @@ void x17_hash(const char* input, char* output, uint32_t len)
     sph_whirlpool_close(&ctx_whirlpool1, hashA);
     
     sph_sha512_init(&ctx_sha2);
-    sph_sha512 (&ctx_sha2, hashA, 64);
-    sph_sha512_close(&ctx_sha2, hashB);
+	sph_sha512(&ctx_sha2,(const void*) hashA, 64);
+	sph_sha512_close(&ctx_sha2,(void*) hashB);
 
-    sph_haval256_5_init(&ctx_haval);
-    sph_haval256_5 (&ctx_haval, hashB, 64);
+	sph_haval256_5_init(&ctx_haval);
+	sph_haval256_5(&ctx_haval,(const void*) hashB, 64);
     sph_haval256_5_close(&ctx_haval, hashA);
 
     memcpy(output, hashA, 32);
