@@ -15,6 +15,7 @@ extern "C" {
     #include "fresh.h"
     #include "fugue.h"
     #include "gltalgos.h"
+    #include "gltkeccak.h"
     #include "groestl.h"
     #include "hefty1.h"
     #include "hmq1725.h"
@@ -806,6 +807,26 @@ NAN_METHOD(jeonghash) {
     info.GetReturnValue().Set(Nan::NewBuffer(output, 32).ToLocalChecked());
 }
 
+NAN_METHOD(gltkeccak) {
+
+    if (info.Length() < 1)
+        return THROW_ERROR_EXCEPTION("You must provide one argument.");
+
+    Local<Object> target = Nan::To<Object>(info[0]).ToLocalChecked();
+
+    if(!Buffer::HasInstance(target))
+        return THROW_ERROR_EXCEPTION("Argument should be a buffer object.");
+
+    char * input = Buffer::Data(target);
+    char *output = (char*) malloc(sizeof(char) * 32);
+
+    uint32_t input_len = Buffer::Length(target);
+
+    gltkeccak_hash(input, output, input_len);
+
+    info.GetReturnValue().Set(Nan::NewBuffer(output, 32).ToLocalChecked());
+}
+
 NAN_METHOD(hmq1725) {
 
     if (info.Length() < 1)
@@ -928,6 +949,7 @@ NAN_MODULE_INIT(init) {
     Nan::Set(target, Nan::New("qubit").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(qubit)).ToLocalChecked());
     Nan::Set(target, Nan::New("hefty1").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(hefty1)).ToLocalChecked());
     Nan::Set(target, Nan::New("hmq1725").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(hmq1725)).ToLocalChecked());
+    Nan::Set(target, Nan::New("gltkeccak").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(gltkeccak)).ToLocalChecked());
     Nan::Set(target, Nan::New("globalhash").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(globalhash)).ToLocalChecked());
     Nan::Set(target, Nan::New("padihash").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(padihash)).ToLocalChecked());
     Nan::Set(target, Nan::New("jeonghash").ToLocalChecked(), Nan::GetFunction(Nan::New<FunctionTemplate>(jeonghash)).ToLocalChecked());
