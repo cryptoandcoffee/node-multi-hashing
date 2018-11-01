@@ -251,62 +251,61 @@ void astralhash(const char* input, char* output, uint32_t len)
     sph_sha512_context       ctx_sha2;
 
     //these uint512 in the c++ source of the client are backed by an array of uint32
-    //uint32_t hashA[16], hashB[16];
-    char temp[64];
+    uint32_t hash[16]	
 
     sph_luffa512_init(&ctx_luffa);
     sph_luffa512(&ctx_luffa, input, len);
-    sph_luffa512_close(&ctx_luffa, &temp);
+    sph_luffa512_close(&ctx_luffa, hash);
 
     sph_skein512_init(&ctx_skein);
-    sph_skein512(&ctx_skein, temp, 64);
-    sph_skein512_close(&ctx_skein, &temp);
+    sph_skein512(&ctx_skein, hash, 64);
+    sph_skein512_close(&ctx_skein, hash);
     
     sph_echo512_init(&ctx_echo);
-    sph_echo512(&ctx_echo, temp, 64);
-    sph_echo512_close(&ctx_echo, &temp);
+    sph_echo512(&ctx_echo, hash, 64);
+    sph_echo512_close(&ctx_echo, hash);
     
     sph_whirlpool_init(&ctx_whirlpool);
-    sph_whirlpool(&ctx_whirlpool, temp, 64);
-    sph_whirlpool_close(&ctx_whirlpool, &temp);
+    sph_whirlpool(&ctx_whirlpool, hash, 64);
+    sph_whirlpool_close(&ctx_whirlpool, hash);
     
     sph_bmw512_init(&ctx_bmw);
-    sph_bmw512(&ctx_bmw, temp, 64);
-    sph_bmw512_close(&ctx_bmw, &temp);
+    sph_bmw512(&ctx_bmw, hash, 64);
+    sph_bmw512_close(&ctx_bmw, hash);
     
     sph_blake512_init(&ctx_blake);
-    sph_blake512(&ctx_blake, temp, 64);
-    sph_blake512_close(&ctx_blake, &temp);
+    sph_blake512(&ctx_blake, hash, 64);
+    sph_blake512_close(&ctx_blake, hash);
     
     sph_shavite512_init(&ctx_shavite);
-    sph_shavite512(&ctx_shavite, temp, 64);
-    sph_shavite512_close(&ctx_shavite, &temp);
+    sph_shavite512(&ctx_shavite, hash, 64);
+    sph_shavite512_close(&ctx_shavite, hash);
     
     sph_skein512_init(&ctx_skein);
-    sph_skein512(&ctx_skein, temp, 64);
-    sph_skein512_close(&ctx_skein, &temp);
+    sph_skein512(&ctx_skein, hash, 64);
+    sph_skein512_close(&ctx_skein, hash);
     
     sph_whirlpool_init(&ctx_whirlpool);
-    sph_whirlpool(&ctx_whirlpool, temp, 64);
-    sph_whirlpool_close(&ctx_whirlpool, &temp);
+    sph_whirlpool(&ctx_whirlpool, hash, 64);
+    sph_whirlpool_close(&ctx_whirlpool, hash);
     
     sph_fugue512_init(&ctx_fugue);
-    sph_fugue512(&ctx_fugue, temp, 64);
-    sph_fugue512_close(&ctx_fugue, &temp);
+    sph_fugue512(&ctx_fugue, hash, 64);
+    sph_fugue512_close(&ctx_fugue, hash);
     
     sph_hamsi512_init(&ctx_hamsi);
-    sph_hamsi512(&ctx_hamsi, temp, 64);
-    sph_hamsi512_close(&ctx_hamsi, &temp);
+    sph_hamsi512(&ctx_hamsi, hash, 64);
+    sph_hamsi512_close(&ctx_hamsi, hash);
     
     sph_haval256_5_init(&ctx_haval);
-    sph_haval256_5(&ctx_haval, temp, 64);
-    sph_haval256_5_close(&ctx_haval, &temp);
+    sph_haval256_5(&ctx_haval, hash, 64);
+    sph_haval256_5_close(&ctx_haval, hash);
     
     sph_sha512_init(&ctx_sha2);
-    sph_sha512(&ctx_sha2, temp, 64);
-    sph_sha512_close(&ctx_sha2, &temp);
+    sph_sha512(&ctx_sha2, hash, 64);
+    sph_sha512_close(&ctx_sha2, hash);
 
-    memcpy(output, &temp, 32);
+    memcpy(output, hash, 32);
 }
 
 void padihash(const char* input, char* output, uint32_t len)
