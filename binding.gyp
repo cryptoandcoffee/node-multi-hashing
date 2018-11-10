@@ -11,7 +11,7 @@
                 "blake/hashblake.c",
                 "boolberry.cc",
                 "c11.c",
-                "cryptonight.c",
+                // "cryptonight.c", GLT does not use cryptonight, and it has conflicts with GLT groestl.
                 "dcrypt.c",
                 "fresh.c",
                 "fugue.c",
@@ -71,7 +71,7 @@
                 "zr5.c",
                 "crypto/oaes_lib.c",
                 "crypto/c_keccak.c",
-                "crypto/c_groestl.c",
+                // "crypto/c_groestl.c", Do not compile c_groestl
                 "crypto/c_blake256.c",
                 "crypto/c_jh.c",
                 "crypto/c_skein.c",
