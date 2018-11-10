@@ -35,6 +35,10 @@
  * @author   Thomas Pornin <thomas.pornin@cryptolog.com>
  */
 
+#ifdef __cplusplus
+extern "C"{
+#endif
+
 #if SPH_HAMSI_EXPAND_SMALL == 1
 
 /* Note: this table lists bits within each byte from least
@@ -39637,4 +39641,8 @@ static const sph_u32 T512_56[256][16] = {
 		mF ^= rp[15]; \
 	} while (0)
 
+#endif
+
+#ifdef __cplusplus
+}
 #endif
