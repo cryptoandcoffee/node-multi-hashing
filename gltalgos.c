@@ -288,7 +288,7 @@ void astralhash(const char* input, char* output, uint32_t len)
     sph_whirlpool_close(&ctx_whirlpool, (void*)&hashB);
     
     sph_bmw512_init(&ctx_bmw);
-    sph_bmw512(&ctx_bmw, (const void*)&hashB), 64);
+    sph_bmw512(&ctx_bmw, (const void*)&hashB, 64);
     sph_bmw512_close(&ctx_bmw, (void*)&hashA);
     
     sph_blake512_init(&ctx_blake);
