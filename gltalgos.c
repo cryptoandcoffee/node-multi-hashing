@@ -268,8 +268,8 @@ void astralhash(const char* input, char* output, uint32_t len)
     sph_haval256_5_context   ctx_haval;
     sph_sha512_context       ctx_sha2;
 
-    //these uint512 in the c++ source of the client are backed by an array of uint32
-    uint32_t hashA[16], hashB[16];	
+    char hashA[64];
+    char hashB[64];	
 
     sph_luffa512_init(&ctx_luffa);
     sph_luffa512(&ctx_luffa, (const void*)&input, len);
