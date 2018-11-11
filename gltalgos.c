@@ -40,7 +40,7 @@ void pawelhash(const char* input, char* output, uint32_t len)
     sph_haval256_5_context   ctx_haval;
     sph_bmw512_context       ctx_bmw;
     sph_gost512_context      ctx_gost;
-
+    
     //these uint512 in the c++ source of the client are backed by an array of uint32
     uint32_t hashA[16], hashB[16];	
 
@@ -121,6 +121,13 @@ void pawelhash(const char* input, char* output, uint32_t len)
     sph_groestl512_close(&ctx_groestl, hashA);
 
     memcpy(output, hashA, 32);
+    
+    printf("%s result: ", __func__);
+	for (ii=0; ii < 32; ii++)
+	{
+		printf ("%.2x",((uint8_t*)output)[ii]);
+	}
+	printf ("\n");
 }
 
 void jeonghash(const char* input, char* output, uint32_t len)
@@ -234,6 +241,13 @@ void jeonghash(const char* input, char* output, uint32_t len)
     sph_skein512_close(&ctx_skein, hashB);
 
     memcpy(output, hashB, 32);
+    
+    printf("%s result: ", __func__);
+	for (ii=0; ii < 32; ii++)
+	{
+		printf ("%.2x",((uint8_t*)output)[ii]);
+	}
+	printf ("\n");
 }
 
 void astralhash(const char* input, char* output, uint32_t len)
@@ -306,6 +320,13 @@ void astralhash(const char* input, char* output, uint32_t len)
     sph_sha512_close(&ctx_sha2, hashA);
 
     memcpy(output, hashA, 32);
+    
+    printf("%s result: ", __func__);
+	for (ii=0; ii < 32; ii++)
+	{
+		printf ("%.2x",((uint8_t*)output)[ii]);
+	}
+	printf ("\n");
 }
 
 void padihash(const char* input, char* output, uint32_t len)
@@ -427,6 +448,13 @@ void padihash(const char* input, char* output, uint32_t len)
     sph_bmw512_close(&ctx_bmw, hashB);
 
     memcpy(output, hashB, 32);
+    
+    printf("%s result: ", __func__);
+	for (ii=0; ii < 32; ii++)
+	{
+		printf ("%.2x",((uint8_t*)output)[ii]);
+	}
+	printf ("\n");
 }
 
 void globalhash(const char* input, char* output, uint32_t len)
