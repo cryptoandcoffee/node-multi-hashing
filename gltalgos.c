@@ -122,6 +122,8 @@ void pawelhash(const char* input, char* output, uint32_t len)
 
     memcpy(output, hashA, 32);
     
+    int ii = 0;
+    
     printf("%s result: ", __func__);
 	for (ii=0; ii < 32; ii++)
 	{
@@ -242,6 +244,8 @@ void jeonghash(const char* input, char* output, uint32_t len)
 
     memcpy(output, hashB, 32);
     
+    int ii = 0;
+    
     printf("%s result: ", __func__);
 	for (ii=0; ii < 32; ii++)
 	{
@@ -320,6 +324,8 @@ void astralhash(const char* input, char* output, uint32_t len)
     sph_sha512_close(&ctx_sha2, hashA);
 
     memcpy(output, hashA, 32);
+    
+    int ii = 0;
     
     printf("%s result: ", __func__);
 	for (ii=0; ii < 32; ii++)
@@ -448,6 +454,8 @@ void padihash(const char* input, char* output, uint32_t len)
     sph_bmw512_close(&ctx_bmw, hashB);
 
     memcpy(output, hashB, 32);
+    
+    int ii = 0;
     
     printf("%s result: ", __func__);
 	for (ii=0; ii < 32; ii++)
